@@ -10,13 +10,11 @@ Monitor made to make sure servers and workstations are not off. It is made to wo
 .DESCRIPTION
     This script will monitor time drift on the machine vs a provided "source of truth".
     
-.NOTES
+.NOTES:
+
     2024-02-15: Modifications by Cameron Day for IPM Computers LLC
-    
     2023-03-22: Exclude empty lines in the output.
-    
     2023-03-18: Add `-Resync` parameter to force a resync if the time drift exceeds threshold.
-    
     2023-03-17: Initial version
     
 .LINK
