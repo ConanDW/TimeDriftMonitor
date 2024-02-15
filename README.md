@@ -4,13 +4,13 @@ Monitor made to make sure servers and workstations are not off. It is made to wo
 
 
 
-.SYNOPSIS
+.SYNOPSIS:
     Monitoring - Windows - Time Drift
     
-.DESCRIPTION
+.DESCRIPTION:
     This script will monitor time drift on the machine vs a provided "source of truth".
     
-.NOTES
+.NOTES:
 
 2024-02-15: Modifications by Cameron Day for IPM Computers LLC
 
@@ -20,10 +20,10 @@ Monitor made to make sure servers and workstations are not off. It is made to wo
 
 2023-03-17: Initial version
     
-.LINK
+.LINK:
     Original Source: https://kevinholman.com/2017/08/26/monitoring-for-time-drift-in-your-enterprise/
     
-.LINK
+.LINK:
     Blog post: https://homotechsual.dev/2023/03/17/Monitoring-Time-Drift-PowerShell/
 
     
