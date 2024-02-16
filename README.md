@@ -1,5 +1,5 @@
 # TimeDriftMonitor
-Monitor made to make sure servers and workstations are not off. It is made to work with the Datto RMM platform. The script checks what the local time on the endpoint and checks it against a time server. The time server can be set to any time server but the default is "time.windows.com". It also allows you to take up to 10 samples. If the option is selected the script will automatically resync the local endpoint's time. Please see flow chart below.
+Monitor made to make sure servers and workstations are not off. It is made to work with the Datto RMM platform. The script checks what the local time on the endpoint and checks it against a time server. The time server can be set to any time server but the default is "0.pool.ntp.org". It also allows you to take up to 10 samples. If the option is selected the script will automatically resync the local endpoint's time. Please see flow chart below.
 
 
 
