@@ -75,7 +75,7 @@ if ($ProcessResult.StdErr) {
   $finish = (get-date).tostring('yyyy-MM-dd hh:mm:ss')
   if ($TimeDriftMinutes -gt $AllowedTimeDrift) {
     if ($ForceResync) {
-      Start-Process -FilePath $Win32TimeExe -ArgumentList '/resync' -Wait
+      Start-Process -FilePath $Win32TimeExe -ArgumentList "/resync /computer:$($ReferenceServer)" -Wait
       $strOUT = "Time drift was greater than the allowed : $($AllowedTimeDrift)min: Resync was Forced : $($finish)"
       Write-Warning "Time drift was greater than the allowed time drift of $AllowedTimeDrift minute. Time drift was $TimeDriftMinutes minutes A resync was forced."
       write-DRMMAlert "$($strOUT)"
