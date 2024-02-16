@@ -75,6 +75,7 @@ if ($ProcessResult.StdErr) {
   $finish = (get-date).tostring('yyyy-MM-dd hh:mm:ss')
   if ($TimeDriftMinutes -gt $AllowedTimeDrift) {
     if ($ForceResync) {
+      Start-Process -FilePath $Win32TimeExe -ArgumentList '/config /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org" /syncfromflags:manual /update' -Wait
       Start-Process -FilePath $Win32TimeExe -ArgumentList "/resync /computer:$($ReferenceServer)" -Wait
       $strOUT = "Time drift was greater than the allowed : $($AllowedTimeDrift)min: Resync was Forced : $($finish)"
       Write-Warning "Time drift was greater than the allowed time drift of $AllowedTimeDrift minute. Time drift was $TimeDriftMinutes minutes A resync was forced."
