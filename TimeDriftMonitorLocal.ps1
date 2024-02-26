@@ -14,13 +14,13 @@
         Blog post: https://homotechsual.dev/2023/03/17/Monitoring-Time-Drift-PowerShell/
 #>
 #region ----- Declorations -----
-[string]$ReferenceServer = 'time.windows.com' #$env:ReferenceServer #default 'time.windows.com'
+[string]$ReferenceServer  = $env:ReferenceServer #default '0.pool.ntp.org'
 # The number of samples to take.
-[int]$NumberOfSamples = 1 #$env:NumberOfSamples #default 1
+[int]$NumberOfSamples     = $env:NumberOfSamples #default 1
 # The allowed time drift in seconds.
-[int]$AllowedTimeDrift = 1 #$env:AllowedTimeDrift #default 1
+[int]$AllowedTimeDrift    = $env:AllowedTimeDrift #default 1
 # Force a resync of the time if the time drift is greater than the allowed time drift.
-$ForceResync = 'false' #$env:ForceResync #default 'false'
+$ForceResync              = $env:ForceResync #default 'false'
 if ($ForceResync -eq 'true') {
   $ForceResync = $true
 } elseif ($ForceResync -eq 'false') {
@@ -81,18 +81,18 @@ if ($ProcessResult.StdErr) {
       Write-Warning "Time drift was greater than the allowed time drift of $AllowedTimeDrift minute. Time drift was $TimeDriftMinutes minutes A resync was forced."
       write-DRMMAlert "$($strOUT)"
       write-DRMMDiag "$($strOUT)`r`n$($ProcessResult.StdOut)`r`n$($ProcessResult.StdErr)"
-      #Exit 1
+      Exit 1
     } else {
       $strOUT = "Time drift was greater than the allowed : $($AllowedTimeDrift)min : Resync was not Forced : $($finish)"
       Write-Error "Time drift is greater than the allowed time drift of $AllowedTimeDrift minutes. Time drift is $TimeDriftMinutes minutes."
       write-DRMMAlert "Time drift was greater than the allowed : $($AllowedTimeDrift)min : Resync was not Forced : $($finish)"
       write-DRMMDiag "$($strOUT)`r`n$($ProcessResult.StdOut)`r`n$($ProcessResult.StdErr)"
-      #Exit 1
+      Exit 1
     }
   } else {
     Write-Verbose "Time drift is within accepted limits. Time drift is $TimeDriftMinutes minutes."
     write-DRMMAlert "Time drift is within accepted limits : $($AllowedTimeDrift)min : $($finish)"
     write-DRMMDiag "$($ProcessResult.StdOut)`r`n$($ProcessResult.StdErr)"
-    #Exit 0
+    Exit 0
   }
 }
